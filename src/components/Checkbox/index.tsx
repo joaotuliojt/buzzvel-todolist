@@ -19,7 +19,7 @@ export function Checkbox({ label, ...rest }: CheckboxProps) {
           <Check strokeWidth={3} size={16} />
         </CheckboxRadix.Indicator>
       </CheckboxRadix.Root>
-      {label && <Label text="label"></Label>}
+      {label && <Label text={label}></Label>}
     </label>
   );
 }
