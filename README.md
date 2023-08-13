@@ -6,13 +6,11 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/joaotuliojt/buzzvel-todolist?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/joaotuliojt/buzzvel-todolist?style=for-the-badge)
 
-
 ## 💻 Pré-requisitos
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
-* Você instalou a versão mais recente do Node.
-* Você leu `<guia / link / documentação_relacionada_ao_projeto>`.
+- Você instalou a versão mais recente do Node.
 
 ## 🚀 Rodando a aplicação
 
