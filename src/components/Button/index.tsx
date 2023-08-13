@@ -5,7 +5,7 @@ const button = tv({
   base: "flex items-center font-medium text-base justify-center h-10 bg-indigo-500 text-white rounded-md hover:brightness-75 transition-all",
   variants: {
     variants: {
-      icon: "p-2",
+      icon: "p-2 w-10 h-10",
       primary: "px-6",
     },
   },
@@ -26,10 +26,7 @@ export function Button({
   ...rest
 }: ButtonProps) {
   return (
-    <button
-      className={button({ variants, className: "font-medium" })}
-      {...rest}
-    >
+    <button className={button({ variants, className })} {...rest}>
       {children}
     </button>
   );
