@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} bg-zinc-100 dark:bg-slate-900 transition-all`}
+        className={`${inter.className} bg-zinc-50 dark:bg-slate-900 transition-all`}
       >
         {children}
         <ToggleTheme />
