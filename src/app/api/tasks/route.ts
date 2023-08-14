@@ -10,9 +10,19 @@ const enum ORDER {
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   let order = searchParams.get("order") as ORDER;
+  if (!order) {
+    order = ORDER.DESC;
+  }
 
   try {
-    const tasks = await prisma.task.findMany({ orderBy: { createdAt: order } });
+    const tasks = await prisma.task.findMany({
+      orderBy: { createdAt: order },
+      include: {
+        subtasks: {
+          orderBy: { createdAt: "desc" },
+        },
+      },
+    });
     return NextResponse.json({ data: tasks }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 400 });
