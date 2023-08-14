@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/services/PrismaClient";
+import { TaskSchema } from "./schemas";
 
 const enum ORDER {
   ASC = "asc",
@@ -16,4 +17,21 @@ export async function GET(req: Request) {
   } catch (error) {
     return NextResponse.json({ error }, { status: 400 });
   }
+}
+
+export async function POST(req: Request) {
+  const body = await req.json();
+  const validation = TaskSchema.safeParse(body);
+
+  if (!validation.success) {
+    return NextResponse.json({ error: validation.error }, { status: 400 });
+  }
+
+  const data = TaskSchema.parse(body);
+
+  const createdTask = await prisma.task.create({
+    data,
+  });
+
+  return NextResponse.json(createdTask, { status: 201 });
 }
