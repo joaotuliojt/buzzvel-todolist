@@ -9,27 +9,25 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
 }
 
-export function Input({
-  leftIcon,
-  rightIcon,
-  errorMessage,
-  ...rest
-}: InputProps) {
-  return (
-    <div className="w-full">
-      <label
-        data-error={errorMessage ? "true" : "false"}
-        className="flex appearance-none w-full bg-transparent rounded-md py-2 px-3 ring-1 ring-slate-200 shadow-sm dark:ring-slate-400 data-[error=true]:ring-red-500 data-[error=true]:dark:ring-red-500"
-      >
-        {leftIcon && <InputIcon icon={leftIcon} />}
-        <input
-          className="bg-transparent w-full block outline-none pl-2 text-sm leading-6 text-slate-900 placeholder:text-slate-400 dark:text-slate-100"
-          type="text"
-          {...rest}
-        />
-        {rightIcon && <InputIcon icon={rightIcon} />}
-      </label>
-      {errorMessage && <ErrorLabel message={errorMessage} />}
-    </div>
-  );
-}
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ leftIcon, rightIcon, errorMessage, ...rest }, ref) => {
+    return (
+      <div className="w-full">
+        <label
+          data-error={errorMessage ? "true" : "false"}
+          className="flex appearance-none w-full bg-transparent rounded-md py-2 px-3 ring-1 ring-slate-200 shadow-sm dark:ring-slate-400 data-[error=true]:ring-red-500 data-[error=true]:dark:ring-red-500"
+        >
+          {leftIcon && <InputIcon icon={leftIcon} />}
+          <input
+            className="bg-transparent w-full block outline-none pl-2 text-sm leading-6 text-slate-900 placeholder:text-slate-400 dark:text-slate-100"
+            type="text"
+            ref={ref}
+            {...rest}
+          />
+          {rightIcon && <InputIcon icon={rightIcon} />}
+        </label>
+        {errorMessage && <ErrorLabel message={errorMessage} />}
+      </div>
+    );
+  },
+);
