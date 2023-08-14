@@ -10,7 +10,7 @@ datasource db {
 model Subtask {
   id          String   @id @default(uuid())
   description String
-  isDone      Boolean
+  isDone      Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   TaskId      String
