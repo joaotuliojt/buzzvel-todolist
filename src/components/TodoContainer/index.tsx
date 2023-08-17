@@ -1,16 +1,13 @@
 import { TodoItem } from "../TodoItem";
 import { AddTask } from "../AddTask";
-
-interface ITask {
-  id: string;
-  description: string;
-  isDone: boolean;
-}
+import { DndContext } from "@dnd-kit/core";
+import { TodoList } from "../TodoList";
 
 async function getTasks() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API}/tasks`, {
     next: {
       tags: ["tasks"],
+      revalidate: 10,
     },
   });
 
@@ -29,14 +26,7 @@ export async function TodoContainer() {
       <AddTask />
       <div className="block w-full my-4 h-[1px]" />
       <div className="flex flex-col gap-4 min-h-[348px] max-h-[348px] overflow-y-auto pr-4">
-        {tasks.data.map((task: ITask) => (
-          <TodoItem
-            key={task.id}
-            description={task.description}
-            finished={task.isDone}
-            id={task.id}
-          />
-        ))}
+        <TodoList tasks={tasks.data} />
       </div>
     </div>
   );
